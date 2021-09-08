@@ -23,7 +23,7 @@ CREATE TABLE "public"."events" (
 	"eventId" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"eventName" TEXT NOT NULL,
-	"dateTime" time with time zone NOT NULL,
+	"dateTime" timestamp with time zone NOT NULL,
 	"description" TEXT NOT NULL,
 	"location" point NOT NULL,
 	"imageUrl" TEXT NOT NULL,
