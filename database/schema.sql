@@ -6,7 +6,7 @@ drop schema "public" cascade;
 
 create schema "public";
 
-CREATE TABLE "public.user" (
+CREATE TABLE "public"."user" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL UNIQUE,
 	"firstName" TEXT NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE "public.user" (
 
 
 
-CREATE TABLE "public.events" (
+CREATE TABLE "public"."events" (
 	"eventId" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"eventName" TEXT NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE "public.events" (
 
 
 
-CREATE TABLE "public.invites" (
+CREATE TABLE "public"."invites" (
 	"eventId" integer NOT NULL,
 	"userId" integer NOT NULL,
 	"response" BOOLEAN
