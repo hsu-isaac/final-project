@@ -57,7 +57,7 @@ export default function Map({ onSearch }) {
   }
 
   return (
-    <div>
+    <div style={{ borderRadius: '5px', overflow: 'hidden' }}>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
@@ -87,7 +87,7 @@ function Search({ panTo }) {
   });
 
   return (
-    <div className="search justify-center">
+    <div className="search justify-center width-100">
       <Combobox
         onSelect={async address => {
           setValue(address, false);

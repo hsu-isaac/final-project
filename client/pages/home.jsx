@@ -5,10 +5,12 @@ import EventForm from '../components/form.jsx';
 export default function Home(props) {
   return (
     <>
-      <div className="container">
-        <EventForm />
+      <div className="real-container">
+        <div className="container">
+          <EventForm />
+          <Navbar />
+        </div>
       </div>
-      <Navbar />
     </>
   );
 }
