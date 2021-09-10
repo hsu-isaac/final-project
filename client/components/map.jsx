@@ -29,7 +29,7 @@ const options = {
 
 const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-export default function Map() {
+export default function Map({ onSearch }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: mapsApiKey,
     libraries
@@ -44,6 +44,7 @@ export default function Map() {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
     setMarker({ lat, lng });
+    onSearch({ lat, lng });
   }, []);
 
   const [marker, setMarker] = useState(null);
