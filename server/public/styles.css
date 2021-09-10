@@ -35,14 +35,17 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 400px;
   z-index: 10;
 }
 
+input {
+  margin-top: 0.25rem;
+}
+
 .search input {
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  width: 100%;
+  padding: 0.25rem;
+  font-size: 1rem;
+  width: 325px;
 }
 
 .locate {
@@ -53,4 +56,14 @@
   border: none;
   z-index: 10;
   cursor: pointer;
+}
+
+.container {
+  width: 95%;
+  margin: auto;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  border-bottom: #bebebe solid 2px;
 }

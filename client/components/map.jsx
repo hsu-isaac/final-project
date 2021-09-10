@@ -1,5 +1,5 @@
-import React from 'react';
-import { GoogleMap, useLoadScript } from '@react-google-maps/api';
+import React, { useState } from 'react';
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -43,7 +43,10 @@ export default function Map() {
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
+    setMarker({ lat, lng });
   }, []);
+
+  const [marker, setMarker] = useState(null);
 
   if (loadError) {
     return 'Error loading maps';
@@ -62,6 +65,7 @@ export default function Map() {
         onLoad={onMapLoad}
       >
         <Search panTo={panTo} />
+        <Marker position={marker} />
       </GoogleMap>
     </div>
   );
@@ -82,7 +86,7 @@ function Search({ panTo }) {
   });
 
   return (
-    <div className="search">
+    <div className="search justify-center">
       <Combobox
         onSelect={async address => {
           setValue(address, false);
@@ -107,8 +111,8 @@ function Search({ panTo }) {
         <ComboboxPopover>
           <ComboboxList>
             {status === 'OK' &&
-              data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
+              data.map(({ reference, description }) => (
+                <ComboboxOption key={reference} value={description} />
               ))}
           </ComboboxList>
         </ComboboxPopover>
