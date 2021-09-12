@@ -1,0 +1,35 @@
+
+.real-container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.column-half,
+.column-full {
+  width: 100%;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .real-container {
+    max-width: 1400px;
+    margin: auto;
+  }
+
+  .column-half {
+    padding: 1rem;
+    width: 50%;
+  }
+
+  .wide-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .margin-top {
+    margin-top: 6rem;
+  }
+}

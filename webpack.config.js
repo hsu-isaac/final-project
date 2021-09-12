@@ -1,9 +1,10 @@
 require('dotenv/config');
 const path = require('path');
+const webpack = require('webpack');
 
 const clientPath = path.join(__dirname, 'client');
 const serverPublicPath = path.join(__dirname, 'server/public');
-
+const serverPublicImagesPath = path.join(serverPublicPath, 'images');
 module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
@@ -12,6 +13,9 @@ module.exports = {
   output: {
     path: serverPublicPath
   },
+  plugins: [
+    new webpack.EnvironmentPlugin(['REACT_APP_GOOGLE_MAPS_API_KEY'])
+  ],
   module: {
     rules: [
       {
@@ -25,6 +29,10 @@ module.exports = {
             ]
           }
         }
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
@@ -35,6 +43,9 @@ module.exports = {
     publicPath: '/',
     contentBase: serverPublicPath,
     watchContentBase: true,
+    watchOptions: {
+      ignored: serverPublicImagesPath
+    },
     stats: 'minimal',
     proxy: {
       '/api': `http://localhost:${process.env.PORT}`
