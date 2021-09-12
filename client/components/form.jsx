@@ -52,28 +52,25 @@ export default function EventForm() {
   };
 
   return (
-      <>
-        <form id="form" onSubmit={handleSubmit}>
-          <div className="wide-row">
-            <div className="column-half">
-              <input className="width-100" name="eventName" type="text" id="eventName" value={eventName} onChange={handleChange} placeholder="Event Name" required></input>
-              <h2>Location</h2>
-              <Map onSearch={mapInput} address={address} required/>
-            </div>
-            <div className="column-half">
-              <h2 className="margin-top">Date</h2>
-              <input type="datetime-local" name="dateTime" id="dateTime" value={dateTime} onChange={handleChange} required></input>
-              <h2>Description</h2>
-              <textarea className="width-100 rounded" name="description" rows="10" id="description" value={description} onChange={handleChange} required></textarea>
-              <h2>Picture</h2>
-              <input type="file" name="image" id="imageUrl" accept="image/png, image/jpeg" value={imageUrl} onChange={handleChange} required></input>
-            </div>
-          </div>
-          <div className="justify-center">
-            <button className="big-button justify-center" type="submit">Create Event</button>
-          </div>
-        </form>
-        <div className="footerSpace"></div>
-      </>
+    <form id="form" onSubmit={handleSubmit}>
+      <div className="wide-row">
+        <div className="column-half">
+          <input className="width-100" name="eventName" type="text" id="eventName" value={eventName} onChange={handleChange} placeholder="Event Name" required></input>
+          <h2>Location</h2>
+          <Map onSearch={mapInput} address={address} required/>
+        </div>
+        <div className="column-half">
+          <h2 className="margin-top">Date</h2>
+          <input type="datetime-local" name="dateTime" id="dateTime" value={dateTime} onChange={handleChange} required></input>
+          <h2>Description</h2>
+          <textarea className="width-100 rounded" name="description" rows="10" id="description" value={description} onChange={handleChange} required></textarea>
+          <h2>Picture</h2>
+          <input type="file" name="image" id="imageUrl" accept="image/png, image/jpeg" value={imageUrl} onChange={handleChange} required></input>
+        </div>
+      </div>
+      <div className="justify-center">
+        <button className="big-button justify-center" type="submit">Create Event</button>
+      </div>
+    </form>
   );
 }
