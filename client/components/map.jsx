@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 
 import usePlacesAutocomplete, {
@@ -12,6 +12,7 @@ import {
   ComboboxList,
   ComboboxOption
 } from '@reach/combobox';
+import '@reach/combobox/styles.css';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -29,7 +30,7 @@ const options = {
 
 const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-export default function Map({ onSearch }) {
+export default function Map({ onSearch, address }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: mapsApiKey,
     libraries
@@ -40,14 +41,19 @@ export default function Map({ onSearch }) {
     mapRef.current = map;
   }, []);
 
-  const panTo = React.useCallback(({ lat, lng }) => {
+  const panTo = React.useCallback(({ lat, lng, address }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
     setMarker({ lat, lng });
-    onSearch({ lat, lng });
+    onSearch({ lat, lng, address });
   }, []);
 
   const [marker, setMarker] = useState(null);
+  useEffect(() => {
+    if (!address) {
+      setMarker(null);
+    }
+  }, [address]);
 
   if (loadError) {
     return 'Error loading maps';
@@ -65,14 +71,14 @@ export default function Map({ onSearch }) {
         options={options}
         onLoad={onMapLoad}
       >
-        <Search panTo={panTo} />
+        <Search panTo={panTo} address={address} />
         <Marker position={marker} />
       </GoogleMap>
     </div>
   );
 }
 
-function Search({ panTo }) {
+function Search({ panTo, address }) {
   const {
     ready,
     value,
@@ -83,8 +89,13 @@ function Search({ panTo }) {
     requestOptions: {
       location: { lat: () => 33.6348792, lng: () => -117.7426695 },
       radius: 200 * 1000
-    }
+    },
+    defaultValue: address
   });
+
+  useEffect(() => {
+    setValue(address);
+  }, [address]);
 
   return (
     <div className="search justify-center width-100">
@@ -95,7 +106,7 @@ function Search({ panTo }) {
           try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
-            panTo({ lat, lng });
+            panTo({ lat, lng, address });
           } catch (error) {
             return ('error!');
           }

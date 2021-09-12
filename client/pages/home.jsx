@@ -8,8 +8,8 @@ export default function Home(props) {
       <div className="real-container">
         <div className="container">
           <EventForm />
-          <Navbar />
         </div>
+        <Navbar />
       </div>
     </>
   );
