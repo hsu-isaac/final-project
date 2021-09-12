@@ -24,6 +24,9 @@
 
 .iconCaption {
   margin-top: 0.25rem;
+}
+
+.active {
   color: #48cae4;
 }
 
