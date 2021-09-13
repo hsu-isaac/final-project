@@ -13,6 +13,11 @@
   width: 100%;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 @media screen and (min-width: 768px) {
   .real-container {
     max-width: 1400px;

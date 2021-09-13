@@ -17,22 +17,30 @@ export default class EventList extends React.Component {
   render() {
     if (this.state.events) {
       return (
-        <div className="container">
+        <>
+          <h1 className="header">Events</h1>
           <ul>
             {
               this.state.events.map(events => {
                 const { eventId, eventName, dateTime, imageUrl } = events;
                 return (
-                  <li key={eventId}>
-                    <p>{eventName}</p>
-                    <p>{dateTime}</p>
-                    <img src={imageUrl}></img>
-                  </li>
+                  <div key={eventId} className="eventListContainer">
+                    <li>
+                      <img src={imageUrl} className='eventImage'></img>
+                      <div className="row justify-between">
+                        <p>{eventName}</p>
+                        <p>{dateTime}</p>
+                      </div>
+                      <div className="row">
+                        <p>address placeholder</p>
+                      </div>
+                    </li>
+                  </div>
                 );
               })
             }
           </ul>
-        </div>
+        </>
       );
     } else {
       return (
