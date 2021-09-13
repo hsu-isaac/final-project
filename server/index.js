@@ -38,6 +38,18 @@ app.post('/api/events', uploadsMiddleware, (req, res, next) => {
   }).catch(err => next(err));
 });
 
+app.get('/api/events', (req, res, next) => {
+  const sql = `
+    select *
+    from "events"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
