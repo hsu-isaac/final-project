@@ -15,23 +15,31 @@ export default class EventList extends React.Component {
   }
 
   render() {
-    return (
-      <div className="container">
-        <ul>
-          {
-            this.state.events.map(events => {
-              const { eventId, eventName, dateTime, imageUrl } = events;
-              return (
-                <li key={eventId}>
-                  <p>{eventName}</p>
-                  <p>{dateTime}</p>
-                  <p>{imageUrl}</p>
-                </li>
-              );
-            })
-          }
-        </ul>
-      </div>
-    );
+    if (this.state.events) {
+      return (
+        <div className="container">
+          <ul>
+            {
+              this.state.events.map(events => {
+                const { eventId, eventName, dateTime, imageUrl } = events;
+                return (
+                  <li key={eventId}>
+                    <p>{eventName}</p>
+                    <p>{dateTime}</p>
+                    <img src={imageUrl}></img>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
+      );
+    } else {
+      return (
+        <div className="container">
+          <h1>You have no events</h1>
+        </div>
+      );
+    }
   }
 }
