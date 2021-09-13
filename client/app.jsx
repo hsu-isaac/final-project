@@ -1,8 +1,9 @@
 import React from 'react';
-import Home from './pages/home';
+/* import CreateEvent from './pages/createEvent'; */
+import ViewEvent from './pages/viewEvents';
 
 export default class App extends React.Component {
   render() {
-    return <Home />;
+    return <ViewEvent />;
   }
 }
