@@ -113,7 +113,7 @@ li {
 
 ul {
   padding: 0;
-  padding-bottom: 50px;
+  margin: 0;
 }
 
 .eventImage {
@@ -130,8 +130,35 @@ ul {
 .eventListContainer {
   padding-top: 1rem;
   border-bottom: #bebebe 2px solid;
+  padding-bottom: 1rem;
 }
 
 .justify-between {
   justify-content: space-between;
+}
+
+.bolded-header {
+  font-weight: bold;
+}
+
+.no-marg-top {
+  margin-top: 0;
+}
+
+.no-marg-bottom {
+  margin-bottom: 0;
+}
+
+.marg-bottom {
+  margin-bottom: 1rem;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.address {
+  width: 250px;
 }
