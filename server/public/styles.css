@@ -52,12 +52,6 @@ input {
   width: 325px;
 }
 
-.container {
-  font-family: 'Roboto', sans-serif;
-  width: 90%;
-  margin: auto;
-}
-
 h2 {
   font-family: 'Work Sans', sans-serif;
   margin-bottom: 0.5rem;
@@ -112,7 +106,8 @@ li {
 }
 
 ul {
-  padding: 0;
+  padding-bottom: 67px;
+  padding-left: 0;
   margin: 0;
 }
 
@@ -130,7 +125,6 @@ ul {
 .eventListContainer {
   padding-top: 1rem;
   border-bottom: #bebebe 2px solid;
-  padding-bottom: 1rem;
 }
 
 .justify-between {

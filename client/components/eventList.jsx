@@ -72,7 +72,7 @@ export default class EventList extends React.Component {
       );
     } else {
       return (
-        <div className="container">
+        <div className="single-container">
           <h1>You have no events</h1>
         </div>
       );

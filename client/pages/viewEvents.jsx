@@ -5,7 +5,7 @@ import EventList from '../components/eventList';
 export default function ViewEvents(props) {
   return (
     <div className="real-container">
-      <div className="container">
+      <div className="single-container">
         <EventList></EventList>
       </div>
       <Navbar />
