@@ -21,6 +21,10 @@ export default class Navbar extends React.Component {
             </Link>
           </div>
           <div className="iconContainer row-33 justify-center column">
+            <Link to="/map" style={{ textDecoration: 'none' }} className="justify-center column">
+              <img className="icon" src="/images/black_geomarker.png" />
+              <p className="iconCaption">Map</p>
+            </Link>
           </div>
         </div>
       </nav>
