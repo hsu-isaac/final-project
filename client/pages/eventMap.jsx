@@ -14,7 +14,7 @@ const center = {
 
 const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-export default class MyComponents extends Component {
+export default class EventMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
