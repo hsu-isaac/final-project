@@ -27,7 +27,7 @@ export default class EventLocation extends React.Component {
 
   render() {
     return (
-      <span>{this.state.address}</span>
+      <span className="truncate">{this.state.address}</span>
     );
   }
 }
