@@ -2,6 +2,7 @@ import React from 'react';
 import CreateEvent from './pages/createEvent';
 import EventList from './components/eventList';
 import EventDetails from './pages/eventDetails';
+import EventMap from './pages/eventMap';
 import Navbar from './components/navbar';
 import {
   Switch,
@@ -27,6 +28,13 @@ export default class App extends React.Component {
             <div className="real-container">
               <div className="single-container">
                 <EventDetails />
+              </div>
+            </div>
+          </Route>
+          <Route path="/map">
+            <div className="real-container">
+              <div className="single-container">
+                <EventMap />
               </div>
             </div>
           </Route>

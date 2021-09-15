@@ -25,7 +25,7 @@ export default function EventDetails() {
   const formattedTime = format(date, 'p');
   return (
       <>
-        <h1 className="header no-marg-bottom">{event.eventName}</h1>
+        <h1 className="header margin-top no-marg-bottom">{event.eventName}</h1>
         <img className="eventImageDescription" src={event.imageUrl}></img>
         <div className="row justify-between border-bottom">
           <p>{formattedDate}</p>
