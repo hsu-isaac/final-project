@@ -50,6 +50,20 @@ app.get('/api/events', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/events/:id', (req, res, next) => {
+  const idValue = req.params.id;
+  const sql = `
+    select *
+    from "events"
+    where "eventId" = ${idValue}
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
