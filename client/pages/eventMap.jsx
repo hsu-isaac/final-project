@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
-  height: '700px'
+  height: '600px'
 };
 
 const center = {
@@ -18,7 +18,7 @@ export default class MyComponents extends Component {
     super(props);
     this.state = {
       events: [],
-      open: false
+      infoOpen: null
     };
   }
 
@@ -30,22 +30,29 @@ export default class MyComponents extends Component {
 
   render() {
     return (
-      <LoadScript
-        googleMapsApiKey= {mapsApiKey}
-      >
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={10}
+      <>
+        <h1>Map</h1>
+        <LoadScript
+          googleMapsApiKey= {mapsApiKey}
         >
-        {this.state.events.map(({ location, eventId }) => (
-          <Marker
-            key={eventId}
-            position={{ lat: location.x, lng: location.y }}
-          />
-        ))}
-        </GoogleMap>
-      </LoadScript>
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={10}
+          >
+          {this.state.events.map(({ location, eventId }) => (
+            <Marker
+              key={eventId}
+              position={{ lat: location.x, lng: location.y }}
+              onClick={() => {
+                this.setState({ infoOpen: eventId });
+              }}
+            >
+            </Marker>
+          ))}
+          </GoogleMap>
+        </LoadScript>
+      </>
     );
   }
 }
