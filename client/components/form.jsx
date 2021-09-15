@@ -55,7 +55,7 @@ export default function EventForm() {
     <form id="form" onSubmit={handleSubmit}>
       <div className="wide-row">
         <div className="column-half">
-          <input className="width-100" name="eventName" type="text" id="eventName" value={eventName} onChange={handleChange} placeholder="Event Name" required></input>
+          <input className="width-100 margin-top" name="eventName" type="text" id="eventName" value={eventName} onChange={handleChange} placeholder="Event Name" required></input>
           <h2>Location</h2>
           <Map onSearch={mapInput} address={address} required/>
         </div>

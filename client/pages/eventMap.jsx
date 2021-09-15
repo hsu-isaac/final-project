@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { format } from 'date-fns';
 
 const containerStyle = {
   width: '100%',
-  height: '600px'
+  height: '575px'
 };
 
 const center = {
@@ -31,7 +32,7 @@ export default class MyComponents extends Component {
   render() {
     return (
       <>
-        <h1>Map</h1>
+        <h1 className="header margin-top">Map</h1>
         <LoadScript
           googleMapsApiKey= {mapsApiKey}
         >
@@ -51,15 +52,17 @@ export default class MyComponents extends Component {
                 this.setState({ infoOpen: eventId });
               }}
             >
-              {
-                this.state.infoOpen === eventId &&
+              {this.state.infoOpen === eventId &&
                 <InfoWindow
                   position={{ lat: location.x, lng: location.y }}>
-                  <div>
-                    <h1>{eventName}</h1>
-                    <img src={imageUrl}></img>
+                  <div className="infowindow">
+                    <h1 className='header'>{eventName}</h1>
+                    <img src={imageUrl} className='infoImage'></img>
                     <p>{description}</p>
-                    <p>{dateTime}</p>
+                    <div className="row justify-between">
+                      <p>{format(new Date(dateTime), 'MMMM do')}</p>
+                      <p>{format(new Date(dateTime), 'p')}</p>
+                    </div>
                   </div>
                 </InfoWindow>
               }

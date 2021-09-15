@@ -25,7 +25,7 @@ export default class EventList extends React.Component {
     if (this.state.events) {
       return (
         <>
-          <h1 className="header no-marg-bottom">Events</h1>
+          <h1 className="header margin-top no-marg-bottom">Events</h1>
           <ul>
             {
               this.state.events.map(events => {
