@@ -103,6 +103,8 @@ form {
 
 li {
   list-style-type: none;
+  padding-top: 1rem;
+  border-bottom: #bebebe 2px solid;
 }
 
 ul {
@@ -120,11 +122,6 @@ ul {
 
 .header {
   border-bottom: black 2px solid;
-}
-
-.eventListContainer {
-  padding-top: 1rem;
-  border-bottom: #bebebe 2px solid;
 }
 
 .justify-between {

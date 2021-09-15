@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateEvent from './pages/createEvent';
-import ViewEvent from './pages/viewEvents';
+import EventList from './components/eventList';
+import EventDetails from './pages/eventDetails';
 import {
   Switch,
   Route
@@ -11,10 +12,21 @@ export default class App extends React.Component {
     return (
       <Switch>
         <Route exact = {true} path="/">
-          <ViewEvent />
+          <div className="real-container">
+            <div className="single-container">
+              <EventList />
+            </div>
+          </div>
         </Route>
         <Route path="/create">
           <CreateEvent />
+        </Route>
+        <Route path="/eventId/:id">
+          <div className="real-container">
+            <div className="single-container">
+              <EventDetails />
+            </div>
+          </div>
         </Route>
       </Switch>
     );
