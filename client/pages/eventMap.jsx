@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
@@ -39,8 +39,11 @@ export default class MyComponents extends Component {
             mapContainerStyle={containerStyle}
             center={center}
             zoom={10}
+            onClick={() => {
+              this.setState({ infoOpen: null });
+            }}
           >
-          {this.state.events.map(({ location, eventId }) => (
+          {this.state.events.map(({ location, eventId, dateTime, description, eventName, imageUrl }) => (
             <Marker
               key={eventId}
               position={{ lat: location.x, lng: location.y }}
@@ -48,6 +51,18 @@ export default class MyComponents extends Component {
                 this.setState({ infoOpen: eventId });
               }}
             >
+              {
+                this.state.infoOpen === eventId &&
+                <InfoWindow
+                  position={{ lat: location.x, lng: location.y }}>
+                  <div>
+                    <h1>{eventName}</h1>
+                    <img src={imageUrl}></img>
+                    <p>{description}</p>
+                    <p>{dateTime}</p>
+                  </div>
+                </InfoWindow>
+              }
             </Marker>
           ))}
           </GoogleMap>
