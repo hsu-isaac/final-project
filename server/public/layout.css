@@ -13,9 +13,28 @@
   width: 100%;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.single-container,
+.event-container {
+  font-family: 'Roboto', sans-serif;
+  width: 90%;
+  margin: auto;
+}
+
 @media screen and (min-width: 768px) {
-  .real-container {
+  .real-container,
+  .event-container {
     max-width: 1400px;
+    margin: auto;
+  }
+
+  .single-container {
+    font-family: 'Roboto', sans-serif;
+    width: 350px;
     margin: auto;
   }
 
