@@ -64,6 +64,24 @@ app.get('/api/events/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/events/:id/uninvited', (req, res, next) => {
+  const idValue = req.params.id;
+  const sql = `
+  select u
+  from public.user as u, invites
+  where "invites"."eventId" = ${idValue} and u."userId" != "invites"."userId"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/events/invite', (req, res, next) => {
+  // insert into
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
