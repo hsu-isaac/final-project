@@ -86,10 +86,10 @@ app.post('/api/events', uploadsMiddleware, (req, res, next) => {
   const imageUrl = '/images/' + req.file.filename;
   const sql = `
   insert into "events" ("userId", "eventName", "dateTime", "description", "location", "imageUrl")
-  values (1, $1, $2, $3, $4, $5)
+  values ($6, $1, $2, $3, $4, $5)
   returning *;
   `;
-  const params = [eventName, dateTime, description, location, imageUrl];
+  const params = [eventName, dateTime, description, location, imageUrl, req.user];
   const dbQuery = db.query(sql, params);
   dbQuery.then(result => {
     res.status(201).send(result.rows[0]);

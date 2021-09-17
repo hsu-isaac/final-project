@@ -199,3 +199,10 @@ ul {
 .no-border {
   border: none;
 }
+
+.title {
+  color: #0077b6;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 4rem;
+  padding-top: 10rem;
+}
