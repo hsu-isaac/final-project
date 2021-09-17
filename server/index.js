@@ -6,6 +6,10 @@ const jsonMiddleware = express.json();
 const staticMiddleware = require('./static-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
 const pg = require('pg');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const googleClientId = process.env.googleClientID;
+const googleClientSecret = process.env.googleClientSecret;
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -15,6 +19,34 @@ const db = new pg.Pool({
 });
 
 const app = express();
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: googleClientId,
+      clientSecret: googleClientSecret,
+      callbackURL: '/auth/google/callback'
+    }, (accessToken, refreshToken, profile, done) => {
+      const sql = `
+      insert into "user" ("name", "googleId")
+      values ($1, $2)
+      on conflict ("googleId")
+      do nothing
+      returning *
+      `;
+      const params = [profile.displayName, profile.id];
+      db.query(sql, params);
+    })
+);
+
+app.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email']
+  })
+);
+
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 app.use(jsonMiddleware);
 

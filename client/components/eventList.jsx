@@ -22,7 +22,7 @@ export default class EventList extends React.Component {
   }
 
   render() {
-    if (this.state.events) {
+    if (this.state.events.length !== 0) {
       return (
         <>
           <h1 className="header margin-top no-marg-bottom">Events</h1>
@@ -55,9 +55,12 @@ export default class EventList extends React.Component {
       );
     } else {
       return (
-        <div className="single-container">
-          <h1>You have no events</h1>
-        </div>
+        <>
+          <h1 className="header margin-top no-marg-bottom">Events</h1>
+          <div className="single-container centered">
+            <h1 className="header no-border">You have no events</h1>
+          </div>
+        </>
       );
     }
   }
