@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import { format } from 'date-fns';
 
 const containerStyle = {
@@ -11,8 +11,6 @@ const center = {
   lat: 33.63,
   lng: -117.74
 };
-
-const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 export default class EventMap extends Component {
   constructor(props) {
@@ -33,9 +31,6 @@ export default class EventMap extends Component {
     return (
       <>
         <h1 className="header margin-top">Map</h1>
-        <LoadScript
-          googleMapsApiKey= {mapsApiKey}
-        >
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
@@ -69,7 +64,6 @@ export default class EventMap extends Component {
             </Marker>
           ))}
           </GoogleMap>
-        </LoadScript>
       </>
     );
   }

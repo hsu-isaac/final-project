@@ -1,2 +1,2 @@
-insert into "user" ("username", "firstName", "lastName", "hashPass")
-values ('hsuisaac', 'isaac', 'hsu', 'hiddenHash')
+insert into "user" ("name", "googleId")
+values ('test test', '123')

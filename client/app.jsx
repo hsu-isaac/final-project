@@ -4,6 +4,7 @@ import EventList from './components/eventList';
 import EventDetails from './pages/eventDetails';
 import EventMap from './pages/eventMap';
 import Navbar from './components/navbar';
+import Login from './pages/login';
 import {
   Switch,
   Route
@@ -20,9 +21,11 @@ export default class App extends React.Component {
                 <EventList />
               </div>
             </div>
+            <Navbar />
           </Route>
           <Route path="/create">
             <CreateEvent />
+            <Navbar />
           </Route>
           <Route path="/eventId/:id">
             <div className="real-container">
@@ -30,6 +33,7 @@ export default class App extends React.Component {
                 <EventDetails />
               </div>
             </div>
+            <Navbar />
           </Route>
           <Route path="/map">
             <div className="real-container">
@@ -37,9 +41,12 @@ export default class App extends React.Component {
                 <EventMap />
               </div>
             </div>
+            <Navbar />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
         </Switch>
-        <Navbar />
       </>
     );
   }
