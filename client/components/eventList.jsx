@@ -16,8 +16,13 @@ export default class EventList extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/events')
-      .then(res => res.json())
+    fetch('/api/events', { redirect: 'follow' })
+      .then(res => {
+        if (res.redirected) {
+          window.location.href = res.url;
+        }
+        return res.json();
+      })
       .then(data => this.setState({ events: data }));
   }
 

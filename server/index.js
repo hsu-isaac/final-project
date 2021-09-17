@@ -10,6 +10,9 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const googleClientId = process.env.googleClientID;
 const googleClientSecret = process.env.googleClientSecret;
+const session = require('express-session');
+const tokenSecret = process.env.TOKEN_SECRET;
+const authentificationMiddleware = require('./authentification-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -19,6 +22,19 @@ const db = new pg.Pool({
 });
 
 const app = express();
+
+app.use(session({ secret: tokenSecret }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 passport.use(
   new GoogleStrategy(
@@ -31,11 +47,15 @@ passport.use(
       insert into "user" ("name", "googleId")
       values ($1, $2)
       on conflict ("googleId")
-      do nothing
+      do update
+        set "googleId" = $2
       returning *
       `;
       const params = [profile.displayName, profile.id];
-      db.query(sql, params);
+      const dbQuery = db.query(sql, params);
+      dbQuery.then(result => {
+        done(null, result.rows[0].userId);
+      });
     })
 );
 
@@ -46,11 +66,17 @@ app.get(
   })
 );
 
-app.get('/auth/google/callback', passport.authenticate('google'));
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/');
+  });
 
 app.use(jsonMiddleware);
 
 app.use(staticMiddleware);
+
+app.use(authentificationMiddleware);
 
 app.post('/api/events', uploadsMiddleware, (req, res, next) => {
   const { eventName, dateTime, description, location } = req.body;
