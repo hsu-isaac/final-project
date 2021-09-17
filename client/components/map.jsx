@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -14,7 +14,6 @@ import {
 } from '@reach/combobox';
 import '@reach/combobox/styles.css';
 
-const libraries = ['places'];
 const mapContainerStyle = {
   width: '100%',
   height: '300px'
@@ -28,13 +27,7 @@ const options = {
   zoomControl: true
 };
 
-const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
 export default function Map({ onSearch, address }) {
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: mapsApiKey,
-    libraries
-  });
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback(map => {
@@ -54,13 +47,6 @@ export default function Map({ onSearch, address }) {
       setMarker(null);
     }
   }, [address]);
-
-  if (loadError) {
-    return 'Error loading maps';
-  }
-  if (!isLoaded) {
-    return 'Loading Maps';
-  }
 
   return (
     <div style={{ borderRadius: '5px', overflow: 'hidden' }}>

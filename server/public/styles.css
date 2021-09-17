@@ -187,3 +187,22 @@ ul {
   width: 200px;
   height: auto;
 }
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 600px;
+}
+
+.no-border {
+  border: none;
+}
+
+.title {
+  color: #0077b6;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 4rem;
+  padding-top: 10rem;
+}

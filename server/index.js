@@ -6,6 +6,13 @@ const jsonMiddleware = express.json();
 const staticMiddleware = require('./static-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
 const pg = require('pg');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const googleClientId = process.env.googleClientID;
+const googleClientSecret = process.env.googleClientSecret;
+const session = require('express-session');
+const tokenSecret = process.env.TOKEN_SECRET;
+const authentificationMiddleware = require('./authentification-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -16,9 +23,60 @@ const db = new pg.Pool({
 
 const app = express();
 
+app.use(session({ secret: tokenSecret }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: googleClientId,
+      clientSecret: googleClientSecret,
+      callbackURL: '/auth/google/callback'
+    }, (accessToken, refreshToken, profile, done) => {
+      const sql = `
+      insert into "user" ("name", "googleId")
+      values ($1, $2)
+      on conflict ("googleId")
+      do update
+        set "googleId" = $2
+      returning *
+      `;
+      const params = [profile.displayName, profile.id];
+      const dbQuery = db.query(sql, params);
+      dbQuery.then(result => {
+        done(null, result.rows[0].userId);
+      });
+    })
+);
+
+app.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email']
+  })
+);
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/');
+  });
+
 app.use(jsonMiddleware);
 
 app.use(staticMiddleware);
+
+app.use(authentificationMiddleware);
 
 app.post('/api/events', uploadsMiddleware, (req, res, next) => {
   const { eventName, dateTime, description, location } = req.body;
@@ -28,10 +86,10 @@ app.post('/api/events', uploadsMiddleware, (req, res, next) => {
   const imageUrl = '/images/' + req.file.filename;
   const sql = `
   insert into "events" ("userId", "eventName", "dateTime", "description", "location", "imageUrl")
-  values (1, $1, $2, $3, $4, $5)
+  values ($6, $1, $2, $3, $4, $5)
   returning *;
   `;
-  const params = [eventName, dateTime, description, location, imageUrl];
+  const params = [eventName, dateTime, description, location, imageUrl, req.user];
   const dbQuery = db.query(sql, params);
   dbQuery.then(result => {
     res.status(201).send(result.rows[0]);
