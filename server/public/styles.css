@@ -75,6 +75,10 @@ h2 {
   margin-top: 3rem;
 }
 
+.sm-margin-top {
+  margin-top: 1rem;
+}
+
 .rounded {
   border-radius: 5px;
 }
@@ -205,4 +209,43 @@ ul {
   font-family: 'Work Sans', sans-serif;
   font-size: 4rem;
   padding-top: 10rem;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: end;
+}
+
+.modal-hidden {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
 }
