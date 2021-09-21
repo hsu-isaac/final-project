@@ -33,8 +33,6 @@ export default function EventDetails() {
       });
   }
 
-  /*   console.log(invites); */
-
   function closeModal(e) {
     setModal('modal-hidden');
   }
