@@ -27,8 +27,10 @@ export default function EventDetails() {
   function inviteModal(e) {
     fetch(`/api/events/${id}/uninvited`)
       .then(res => res.json())
-      .then(data => setInvites({ data }));
-    setModal('modal');
+      .then(data => {
+        setInvites({ data });
+        setModal('modal');
+      });
   }
 
   /*   console.log(invites); */
