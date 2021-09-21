@@ -109,6 +109,17 @@ form {
   background-color: #0096c7;
 }
 
+.big-button:disabled {
+  background-color: #caf0f8;
+}
+
+.cancel {
+  background-color: white;
+  color: gray;
+  outline: none;
+  border: none;
+}
+
 li {
   list-style-type: none;
   padding-top: 1rem;
@@ -248,4 +259,20 @@ ul {
   padding: 20px;
   border: 1px solid #888;
   width: 90%;
+  height: 80%;
+}
+
+.form {
+  height: 100%;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.inviteCheck {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 18pt;
 }

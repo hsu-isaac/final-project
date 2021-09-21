@@ -125,7 +125,8 @@ app.get('/api/events/:id', (req, res, next) => {
 app.get('/api/events/:id/uninvited', (req, res, next) => {
   const idValue = req.params.id;
   const sql = `
-  SELECT users."name"
+  SELECT users."name",
+  users."userId"
   FROM public.user as users
   WHERE users."userId" NOT IN (SELECT invites."userId" FROM invites WHERE invites."eventId" = $1)
   `;
@@ -137,9 +138,20 @@ app.get('/api/events/:id/uninvited', (req, res, next) => {
     .catch(err => next(err));
 });
 
-/* app.post('/api/events/invite', (req, res, next) => {
-  // insert into
-}); */
+app.post('/api/events/:id/invite', (req, res, next) => {
+  const { userId } = req.body;
+  const idValue = req.params.id;
+  const sql = `
+    insert into "invites" ("eventId", "userId")
+    values ($1, $2)
+  `;
+  const params = [idValue, userId];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
 
 app.use(errorMiddleware);
 
