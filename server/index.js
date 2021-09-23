@@ -13,6 +13,7 @@ const googleClientSecret = process.env.googleClientSecret;
 const session = require('express-session');
 const tokenSecret = process.env.TOKEN_SECRET;
 const authentificationMiddleware = require('./authentification-middleware');
+const path = require('path');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -151,6 +152,12 @@ app.post('/api/events/:id/invite', (req, res, next) => {
       res.json(result.rows);
     })
     .catch(err => next(err));
+});
+
+app.use((req, res) => {
+  res.sendFile('/index.html', {
+    root: path.join(__dirname, 'public')
+  });
 });
 
 app.use(errorMiddleware);
