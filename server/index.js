@@ -83,7 +83,7 @@ app.post('/api/events', uploadsMiddleware, (req, res, next) => {
   if (!eventName || !dateTime || !description || !location || !req.file) {
     throw new ClientError(400, 'event name, date, description, location, and image are required fields');
   }
-  const imageUrl = '/images/' + req.file.filename;
+  const imageUrl = req.file.location;
   const sql = `
   insert into "events" ("userId", "eventName", "dateTime", "description", "location", "imageUrl")
   values ($6, $1, $2, $3, $4, $5)
