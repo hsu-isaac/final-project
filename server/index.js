@@ -77,15 +77,7 @@ app.use(jsonMiddleware);
 
 app.use(staticMiddleware);
 
-app.use((req, res) => {
-  res.sendFile('/index.html', {
-    root: path.join(__dirname, 'public')
-  });
-});
-
-app.use(authentificationMiddleware);
-
-app.post('/api/events', uploadsMiddleware, (req, res, next) => {
+app.post('/api/events', [authentificationMiddleware, uploadsMiddleware], (req, res, next) => {
   const { eventName, dateTime, description, location } = req.body;
   if (!eventName || !dateTime || !description || !location || !req.file) {
     throw new ClientError(400, 'event name, date, description, location, and image are required fields');
@@ -103,7 +95,7 @@ app.post('/api/events', uploadsMiddleware, (req, res, next) => {
   }).catch(err => next(err));
 });
 
-app.get('/api/events', (req, res, next) => {
+app.get('/api/events', authentificationMiddleware, (req, res, next) => {
   const sql = `
     select *
     from "events"
@@ -115,7 +107,7 @@ app.get('/api/events', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/events/:id', (req, res, next) => {
+app.get('/api/events/:id', authentificationMiddleware, (req, res, next) => {
   const idValue = req.params.id;
   const sql = `
     select *
@@ -129,7 +121,7 @@ app.get('/api/events/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/events/:id/uninvited', (req, res, next) => {
+app.get('/api/events/:id/uninvited', authentificationMiddleware, (req, res, next) => {
   const idValue = req.params.id;
   const sql = `
   SELECT users."name",
@@ -145,7 +137,7 @@ app.get('/api/events/:id/uninvited', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/events/:id/invite', (req, res, next) => {
+app.post('/api/events/:id/invite', authentificationMiddleware, (req, res, next) => {
   const { userId } = req.body;
   const idValue = req.params.id;
   const sql = `
@@ -158,6 +150,12 @@ app.post('/api/events/:id/invite', (req, res, next) => {
       res.json(result.rows);
     })
     .catch(err => next(err));
+});
+
+app.use((req, res) => {
+  res.sendFile('/index.html', {
+    root: path.join(__dirname, 'public')
+  });
 });
 
 app.use(errorMiddleware);
