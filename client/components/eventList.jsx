@@ -22,10 +22,11 @@ class EventList extends React.Component {
       .then(res => {
         if (res.redirected) {
           this.props.history.replace('/login');
+          return;
         }
-        return res.json();
-      })
-      .then(data => this.setState({ events: data }));
+        const data = res.json();
+        this.setState({ events: data });
+      });
   }
 
   render() {
