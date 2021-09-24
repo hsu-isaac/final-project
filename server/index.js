@@ -77,6 +77,12 @@ app.use(jsonMiddleware);
 
 app.use(staticMiddleware);
 
+app.use((req, res) => {
+  res.sendFile('/index.html', {
+    root: path.join(__dirname, 'public')
+  });
+});
+
 app.use(authentificationMiddleware);
 
 app.post('/api/events', uploadsMiddleware, (req, res, next) => {
@@ -152,18 +158,6 @@ app.post('/api/events/:id/invite', (req, res, next) => {
       res.json(result.rows);
     })
     .catch(err => next(err));
-});
-
-app.get('/login', (req, res) => {
-  res.sendFile('/index.html', {
-    root: path.join(__dirname, 'public')
-  });
-});
-
-app.use((req, res) => {
-  res.sendFile('/index.html', {
-    root: path.join(__dirname, 'public')
-  });
 });
 
 app.use(errorMiddleware);
