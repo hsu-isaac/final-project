@@ -16,10 +16,7 @@ export default class EventList extends React.Component {
   }
 
   componentDidMount() {
-    const init = {
-      redirect: 'manual'
-    };
-    fetch('/api/events', init)
+    fetch('/api/events')
       .then(res => {
         if (res.redirected) {
           window.location.href = res.url;
