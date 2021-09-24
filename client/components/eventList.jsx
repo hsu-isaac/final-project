@@ -4,9 +4,11 @@ import {
   Link
 } from 'react-router-dom';
 
+import { withRouter } from 'react-router';
+
 import EventLocation from '../components/eventLocation';
 
-export default class EventList extends React.Component {
+class EventList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +21,7 @@ export default class EventList extends React.Component {
     fetch('/api/events')
       .then(res => {
         if (res.redirected) {
-          window.location.href = res.url;
+          this.props.history.replace('/login');
         }
         return res.json();
       })
@@ -70,3 +72,6 @@ export default class EventList extends React.Component {
     }
   }
 }
+
+export default withRouter(EventList)
+;

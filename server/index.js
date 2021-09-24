@@ -154,7 +154,7 @@ app.post('/api/events/:id/invite', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile('/index.html', {
     root: path.join(__dirname, 'public')
   });
