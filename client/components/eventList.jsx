@@ -24,9 +24,9 @@ class EventList extends React.Component {
           this.props.history.replace('/login');
           return;
         }
-        const data = res.json();
-        this.setState({ events: data });
-      });
+        return res.json();
+      })
+      .then(data => this.setState({ events: data }));
   }
 
   render() {
