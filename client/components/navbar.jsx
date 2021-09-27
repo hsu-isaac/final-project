@@ -11,19 +11,19 @@ export default class Navbar extends React.Component {
           <div className="iconContainer row-33 justify-center column">
             <Link to="/" style={{ textDecoration: 'none' }} className="justify-center column">
               <img className="icon" src="/images/black_home.png" />
-              <p className="iconCaption">Home</p>
+              <p className="icon-caption">Home</p>
             </Link>
           </div>
           <div className="iconContainer row-33 justify-center column">
             <Link to="/create" style={{ textDecoration: 'none' }} className="justify-center column">
               <img className="icon" src="/images/blue_plus_square.png" />
-              <p className="iconCaption active">New</p>
+              <p className="icon-caption active">New</p>
             </Link>
           </div>
           <div className="iconContainer row-33 justify-center column">
             <Link to="/map" style={{ textDecoration: 'none' }} className="justify-center column">
               <img className="icon" src="/images/black_geomarker.png" />
-              <p className="iconCaption">Map</p>
+              <p className="icon-caption">Map</p>
             </Link>
           </div>
         </div>

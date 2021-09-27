@@ -22,7 +22,7 @@
   flex-direction: column;
 }
 
-.iconCaption {
+.icon-caption {
   margin-top: 0.25rem;
   color: black;
 }
@@ -133,14 +133,14 @@ ul {
   margin: 0;
 }
 
-.eventImage {
+.event-image {
   width: 100%;
   height: 130px;
   object-fit: cover;
   border-radius: 5px;
 }
 
-.eventImageDescription {
+.event-image-description {
   width: 100%;
   height: 350px;
   object-fit: cover;
@@ -271,7 +271,7 @@ ul {
   height: 100%;
 }
 
-.inviteCheck {
+.invite-check {
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-family: 'Work Sans', sans-serif;
