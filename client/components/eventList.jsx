@@ -7,13 +7,15 @@ import {
 import { withRouter } from 'react-router';
 
 import EventLocation from '../components/eventLocation';
+import Spinner from '../components/spinner';
 
 class EventList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
-      addresses: {}
+      addresses: {},
+      loaded: false
     };
   }
 
@@ -30,6 +32,7 @@ class EventList extends React.Component {
       .then(data => {
         if (this._isMounted) {
           this.setState({ events: data });
+          this.setState({ loaded: true });
         }
       });
   }
@@ -39,6 +42,12 @@ class EventList extends React.Component {
   }
 
   render() {
+    if (!this.state.loaded) {
+      return (
+        <Spinner/>
+      );
+    }
+
     if (this.state.events.length !== 0) {
       return (
         <>

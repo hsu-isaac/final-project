@@ -4,6 +4,7 @@ import {
   useParams
 } from 'react-router-dom';
 import EventLocation from '../components/eventLocation';
+import Spinner from '../components/spinner';
 
 export default function EventDetails() {
   const [event, setEvent] = useState(null);
@@ -11,11 +12,15 @@ export default function EventDetails() {
   const { id } = useParams();
   const [modal, setModal] = useState('modal-hidden');
   const [invited, setInvited] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     fetch(`/api/events/${id}`)
       .then(res => res.json())
-      .then(data => setEvent(data[0]));
+      .then(data => {
+        setEvent(data[0]);
+        setLoaded(true);
+      });
   }, []);
   if (!event) {
     return (
@@ -31,8 +36,6 @@ export default function EventDetails() {
         setModal('modal');
       });
   }
-
-  /*   console.log(invites); */
 
   function closeModal(e) {
     setModal('modal-hidden');
@@ -69,6 +72,11 @@ export default function EventDetails() {
   const date = new Date(event.dateTime);
   const formattedDate = format(date, 'MMMM do');
   const formattedTime = format(date, 'p');
+  if (!loaded) {
+    return (
+      <Spinner />
+    );
+  }
   if (invites) {
     return (
       <>
@@ -85,7 +93,7 @@ export default function EventDetails() {
                       const { name, userId } = users;
                       return (
                         <div key={userId} className="inviteCheck border-bottom">
-                          <input onChange={inviteUsers} name={userId} type="checkbox" id={name} key={name} />
+                          <input onChange={inviteUsers} name={userId} type="checkbox" id={name} key={name} className="pointer" />
                           <label htmlFor={userId}>{name}</label>
                         </div>
                       );
@@ -97,7 +105,7 @@ export default function EventDetails() {
                     <button disabled={invited.length === 0} className="big-button justify-center" type="submit">Send Invites</button>
                   </div>
                   <div className="justify-center">
-                    <button onClick={closeModal} className="sm-margin-top cancel">Cancel</button>
+                    <button onClick={closeModal} className="sm-margin-top cancel pointer">Cancel</button>
                   </div>
                 </div>
               </div>
@@ -107,7 +115,9 @@ export default function EventDetails() {
           </div>
         </div>
         <div className="justify-end width-100 sm-margin-top">
-          <img src="/images/envelope.png" onClick={inviteModal}></img>
+          <div className="pointer">
+            <img src="/images/envelope.png" onClick={inviteModal}></img>
+          </div>
         </div>
         <h1 className="header sm-margin-top no-marg-bottom">{event.eventName}</h1>
         <img className="eventImageDescription" src={event.imageUrl}></img>

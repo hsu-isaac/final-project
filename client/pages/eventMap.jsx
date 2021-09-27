@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import { format } from 'date-fns';
+import Spinner from '../components/spinner';
 
 const containerStyle = {
   width: '100%',
@@ -17,17 +18,26 @@ export default class EventMap extends Component {
     super(props);
     this.state = {
       events: [],
-      infoOpen: null
+      infoOpen: null,
+      loaded: false
     };
   }
 
   componentDidMount() {
     fetch('/api/events')
       .then(res => res.json())
-      .then(data => this.setState({ events: data }));
+      .then(data => {
+        this.setState({ events: data });
+        this.setState({ loaded: true });
+      });
   }
 
   render() {
+    if (!this.state.loaded) {
+      return (
+        <Spinner />
+      );
+    }
     return (
       <>
         <h1 className="header margin-top">Map</h1>
