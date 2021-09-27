@@ -18,6 +18,7 @@ class EventList extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     fetch('/api/events')
       .then(res => {
         if (res.redirected) {
@@ -26,7 +27,15 @@ class EventList extends React.Component {
         }
         return res.json();
       })
-      .then(data => this.setState({ events: data }));
+      .then(data => {
+        if (this._isMounted) {
+          this.setState({ events: data });
+        }
+      });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
