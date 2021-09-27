@@ -1,3 +1,5 @@
+/* import passportCustom from 'passport-custom'; */
+
 require('dotenv/config');
 const express = require('express');
 const ClientError = require('./client-error');
@@ -14,6 +16,7 @@ const session = require('express-session');
 const tokenSecret = process.env.TOKEN_SECRET;
 const authentificationMiddleware = require('./authentification-middleware');
 const path = require('path');
+/* const CustomStrategy = passportCustom.strategy; */
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,

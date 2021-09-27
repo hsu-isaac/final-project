@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import {
   useParams
 } from 'react-router-dom';
-import EventLocation from '../components/eventLocation';
+import EventLocation from '../components/event-location';
 import Spinner from '../components/spinner';
 
 export default function EventDetails() {
@@ -92,7 +92,7 @@ export default function EventDetails() {
                     invites.data.map(users => {
                       const { name, userId } = users;
                       return (
-                        <div key={userId} className="inviteCheck border-bottom">
+                        <div key={userId} className="invite-check border-bottom">
                           <input onChange={inviteUsers} name={userId} type="checkbox" id={name} key={name} className="pointer" />
                           <label htmlFor={userId}>{name}</label>
                         </div>
@@ -120,7 +120,7 @@ export default function EventDetails() {
           </div>
         </div>
         <h1 className="header sm-margin-top no-marg-bottom">{event.eventName}</h1>
-        <img className="eventImageDescription" src={event.imageUrl}></img>
+        <img className="event-image-description" src={event.imageUrl}></img>
         <div className="row justify-between border-bottom">
           <p>{formattedDate}</p>
           <p>{formattedTime}</p>
@@ -140,7 +140,7 @@ export default function EventDetails() {
           <img src="/images/envelope.png" onClick={inviteModal}></img>
         </div>
         <h1 className="header sm-margin-top no-marg-bottom">{event.eventName}</h1>
-        <img className="eventImageDescription" src={event.imageUrl}></img>
+        <img className="event-image-description" src={event.imageUrl}></img>
         <div className="row justify-between border-bottom">
           <p>{formattedDate}</p>
           <p>{formattedTime}</p>

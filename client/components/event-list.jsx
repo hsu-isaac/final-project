@@ -6,7 +6,7 @@ import {
 
 import { withRouter } from 'react-router';
 
-import EventLocation from '../components/eventLocation';
+import EventLocation from '../components/event-location';
 import Spinner from '../components/spinner';
 
 class EventList extends React.Component {
@@ -62,7 +62,7 @@ class EventList extends React.Component {
                 return (
                   <Link to={`/eventId/${eventId}`} style={{ textDecoration: 'none', color: 'black' }} key={eventId}>
                     <li id={eventId}>
-                      <img src={imageUrl} id={eventId} className='eventImage'></img>
+                      <img src={imageUrl} id={eventId} className='event-image'></img>
                       <div className="row justify-between">
                         <p className="bolded-header" id={eventId}>{eventName}</p>
                         <p id={eventId}>{formattedDate}</p>

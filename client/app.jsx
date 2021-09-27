@@ -1,8 +1,8 @@
 import React from 'react';
-import CreateEvent from './pages/createEvent';
-import EventList from './components/eventList';
-import EventDetails from './pages/eventDetails';
-import EventMap from './pages/eventMap';
+import CreateEvent from './pages/create-event';
+import EventList from './components/event-list';
+import EventDetails from './pages/event-details';
+import EventMap from './pages/event-map';
 import Navbar from './components/navbar';
 import Login from './pages/login';
 import {
