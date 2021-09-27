@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import {
   useParams
 } from 'react-router-dom';
-import { useEffect } from 'react/cjs/react.development';
 import EventLocation from '../components/eventLocation';
 
 export default function EventDetails() {
