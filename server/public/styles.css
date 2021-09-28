@@ -30,6 +30,7 @@
 
 input {
   margin-top: 0.25rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 .search input {
@@ -70,6 +71,7 @@ h2 {
 
 textarea {
   resize: none;
+  font-family: 'Roboto', sans-serif;
 }
 
 form {
@@ -319,4 +321,8 @@ ul {
 
 .header-caption {
   padding-left: 2rem;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
 }
