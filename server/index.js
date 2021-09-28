@@ -41,7 +41,19 @@ passport.deserializeUser((user, done) => {
 
 passport.use('demo-login', new CustomStrategy(
   function (req, callback) {
-    callback(null, '1234567890');
+    const sql = `
+    insert into "user" ("name", "googleId")
+    values ($1, $2)
+    on conflict ("googleId")
+    do update
+      set "googleId" = $2
+    returning *
+    `;
+    const params = ['demo', '1234567890'];
+    const dbQuery = db.query(sql, params);
+    dbQuery.then(results => {
+      callback(null, results.rows[0].userId);
+    });
   }
 ));
 
