@@ -10,7 +10,9 @@ export default class Login extends React.Component {
             <a href="/auth/google">
               <button className="big-button">Sign In</button>
             </a>
-          <button className="big-button">Demo Sign In</button>
+            <a href="/auth/demo">
+              <button className="big-button">Demo Sign In</button>
+            </a>
         </div>
       </div>
     );

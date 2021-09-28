@@ -1,5 +1,3 @@
-/* import passportCustom from 'passport-custom'; */
-
 require('dotenv/config');
 const express = require('express');
 const ClientError = require('./client-error');
@@ -16,7 +14,8 @@ const session = require('express-session');
 const tokenSecret = process.env.TOKEN_SECRET;
 const authentificationMiddleware = require('./authentification-middleware');
 const path = require('path');
-/* const CustomStrategy = passportCustom.strategy; */
+const passportCustom = require('passport-custom');
+const CustomStrategy = passportCustom.Strategy;
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -39,6 +38,20 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+
+passport.use('demo-login', new CustomStrategy(
+  function (req, callback) {
+    callback(null, '1234567890');
+  }
+));
+
+app.get(
+  '/auth/demo',
+  passport.authenticate('demo-login'),
+  function (req, res) {
+    res.redirect('/');
+  }
+);
 
 passport.use(
   new GoogleStrategy(
