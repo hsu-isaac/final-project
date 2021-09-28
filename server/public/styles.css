@@ -1,13 +1,3 @@
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: -11px;
-  width: 100%;
-  margin: auto;
-  border-top: #bebebe solid 2px;
-  background-color: white;
-}
-
 .row-33 {
   width: 33%;
 }
@@ -20,11 +10,6 @@
 
 .column {
   flex-direction: column;
-}
-
-.icon-caption {
-  margin-top: 0.25rem;
-  color: black;
 }
 
 .active {
@@ -322,4 +307,16 @@ ul {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.flex {
+  display: flex;
+}
+
+.header-image {
+  width: 30%;
+}
+
+.header-caption {
+  padding-left: 2rem;
 }

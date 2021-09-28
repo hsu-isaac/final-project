@@ -30,6 +30,25 @@
   margin: auto;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: -11px;
+  width: 100%;
+  margin: auto;
+  border-top: #bebebe solid 2px;
+  background-color: white;
+}
+
+.nav-header {
+  display: none;
+}
+
+.icon-caption {
+  margin-top: 0.25rem;
+  color: black;
+}
+
 @media screen and (min-width: 768px) {
   .real-container,
   .event-container {
@@ -41,6 +60,7 @@
     font-family: 'Roboto', sans-serif;
     width: 700px;
     margin: auto;
+    margin-top: 75px;
   }
 
   .column-half {
@@ -55,5 +75,31 @@
 
   .margin-top {
     margin-top: 6rem;
+  }
+
+  .footer {
+    display: none;
+  }
+
+  .nav-header {
+    display: inline;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: auto;
+    border-bottom: #bebebe solid 2px;
+    background-color: white;
+    padding-top: 10px;
+  }
+
+  .icon-container {
+    margin: 0;
+  }
+
+  .icon-caption {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    color: black;
   }
 }
