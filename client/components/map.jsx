@@ -105,6 +105,7 @@ function Search({ panTo, address }) {
           }}
           disabled={!ready}
           placeholder="Enter an address"
+          required
         />
         <ComboboxPopover>
           <ComboboxList>
