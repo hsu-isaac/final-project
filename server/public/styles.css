@@ -186,11 +186,6 @@ ul {
   width: auto;
 }
 
-.infoImage {
-  width: 200px;
-  height: auto;
-}
-
 .centered {
   display: flex;
   justify-content: center;
@@ -207,7 +202,7 @@ ul {
   color: #0077b6;
   font-family: 'Work Sans', sans-serif;
   font-size: 4rem;
-  padding-top: 10rem;
+  padding-top: 4rem;
 }
 
 .justify-end {

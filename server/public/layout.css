@@ -49,6 +49,11 @@
   color: black;
 }
 
+.infoImage {
+  width: 200px;
+  height: auto;
+}
+
 @media screen and (min-width: 768px) {
   .real-container,
   .event-container {
@@ -102,5 +107,10 @@
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
     color: black;
+  }
+
+  .infoImage {
+    width: 300px;
+    height: auto;
   }
 }
