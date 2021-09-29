@@ -108,6 +108,11 @@ form {
   border: none;
 }
 
+.cancel:disabled {
+  color: rgb(231, 230, 230);
+  cursor: not-allowed;
+}
+
 li {
   list-style-type: none;
   padding-top: 1rem;

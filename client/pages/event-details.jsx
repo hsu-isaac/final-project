@@ -105,7 +105,7 @@ export default function EventDetails() {
                     <button disabled={invited.length === 0} className="big-button justify-center" type="submit">Send Invites</button>
                   </div>
                   <div className="justify-center">
-                    <button onClick={closeModal} className="sm-margin-top cancel pointer">Cancel</button>
+                    <button disabled={invited.length !== 0} onClick={closeModal} className="sm-margin-top cancel pointer">Cancel</button>
                   </div>
                 </div>
               </div>
