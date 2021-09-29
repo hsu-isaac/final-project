@@ -2,7 +2,7 @@
 
 This is a web application for friends who want to hangout with each other!
 
-This is a full-stack application that utlizes HTML, CSS, JavaScript, React.js in the front end and Node.js, Express.js, and postgresql in the back end. lodash, date.fns, and passport were also used throughout the application.
+This is a full-stack application that utilizes HTML, CSS, JavaScript, React.js in the front end and Node.js, Express.js, and postgresql in the back end. lodash, date.fns, and passport were also used throughout the application.
 
 I originally wanted to make an app for athletes to organize local pickup games more easily, however as I made the app I discovered that it could be used for a more general purpose. I love playing sports and hanging out with my friends, hopefully this app can help encourage those activities!
 
