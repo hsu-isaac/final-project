@@ -41,7 +41,7 @@ HTML, CSS, JavaScript, React.js, Node.js, Express.js, Postgresql, lodash, date-f
 1. Clone the repository.
 
     ```shell
-    git clone https://github.com/hsuisaac/final-project.git
+    git clone git@github.com:hsu-isaac/hangouts.git
     cd final-project
     ```
 
