@@ -34,7 +34,6 @@ HTML, CSS, JavaScript, React.js, Node.js, Express.js, Postgresql, lodash, date-f
 ## Requirements
 - Node.js 10 or higher
 - NPM 6 or higher
-- MongoDB 4 or higher
 
 ## Getting Started
 
