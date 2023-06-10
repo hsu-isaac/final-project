@@ -8,9 +8,7 @@ I originally wanted to make an app for athletes to organize local pickup games m
 
 ## Live Deployment Link
 
-~~Try the application at: https://lfz-hangouts.herokuapp.com/~~
-
-Deployoment is currently down due to changes from heroku.
+Try the application at: [https://hangouts-ui.onrender.com](https://hangouts-ui.onrender.com)
 
 ## Stack
 
